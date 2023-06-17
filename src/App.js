@@ -1,14 +1,13 @@
-import React, {useState} from 'react'
-import axios from 'axios'
-import './App.css'
+import {useState} from 'react'
+import WeatherSearch from "./components/search.js/WeatherSearch"
+import CurrentWeather from ".components/forecast/forecast"
+import "./App.css"
 
-function Card() {
+function App() {
   return (
-    <div className="App">
-      <div className="container"></div>
-    </div>
+
   );
 }
 
-export default Card();
+export default App();
 //add card into this file
