@@ -10,5 +10,5 @@ function Card() {
   );
 }
 
-export default App;
+export default Card();
 
