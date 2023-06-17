@@ -1,13 +1,15 @@
-import {useState} from 'react'
-import WeatherSearch from "./components/search.js/WeatherSearch"
-import CurrentWeather from ".components/forecast/forecast"
-import "./App.css"
+import "./App.css";
+import WeatherSearch from "./components/search";
 
 function App() {
   return (
-
+    <div className="App">
+      <header className="App-header">
+        <p>Hello World!</p>
+      </header>
+      <WeatherSearch /> {/* Include the WeatherSearch component */}
+    </div>
   );
 }
 
-export default App();
-//add card into this file
+export default App;

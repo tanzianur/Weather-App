@@ -1,5 +1,5 @@
 {
-  "name": "aeather-app",
+  "name": "weather-app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -40,5 +40,9 @@
   },
   "devDependencies": {
     "web-vitals": "^3.3.2"
-  }
+  },
+  "description": "This is a weather application which aggregates data on weather, air quality, and news for cities around the world by utilizing multiple different APIs.",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC"
 }
