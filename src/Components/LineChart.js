@@ -19,7 +19,6 @@ function LineChart({ chartData, refreshChart }) {
       <header>
         <h2>Temperature and Air Quality</h2>
       </header>
-      <button class="upcoming">Upcoming</button>
       <Line data={chartData} />
       <div className="weather-cards">
         <Card title="Humidity" value={`${chartData.extraData.humidity}%`} />
