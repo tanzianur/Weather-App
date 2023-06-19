@@ -25,7 +25,7 @@ const SummaryAI = React.memo(({ refreshChart }) => {
     <div className="card">
       <header className="card-header">
         <h2>
-          AI Summary
+          AI News Summary
           <button onClick={createSummary}>
             <svg
               stroke="currentColor"
