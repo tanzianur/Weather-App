@@ -3,7 +3,7 @@ import "./App.css";
 import WeatherSearch from "./Components/search";
 import LineChart from "./Components/LineChart";
 import { UserData } from "./Components/Data";
-import NewsCard from "./Components/News";
+import News from "./Components/News";
 import CitySummary from "./Components/ClaudeAi";
 import WeatherCards from "./Components/ExtraData";
 import ParentComponent from "./Components/ParentComponent";
@@ -44,9 +44,21 @@ function App() {
     },
   });
 
+  const [keyword, setKeyword] = useState("");
+  const [searchHandled, setSearchHandled] = useState(false);
+
+  const fromChild = (value) => {
+    setKeyword(value);
+  };
+
+  const onSearch = () => {
+    setSearchHandled(true);
+  };
+
   return (
     <div class="App">
-      <ParentComponent />
+      <WeatherSearch callback={fromChild} onSearch={onSearch} />
+      <News keyword={keyword} searchHandled={searchHandled} />
       <div class="row">
         <LineChart chartData={userData} />
         <WeatherCards />

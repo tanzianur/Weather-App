@@ -18,7 +18,6 @@ app.get("/weather/:country/:city", async (req, res) => {
       `https://api.api-ninjas.com/v1/geocoding?city=${city}&country=${country}`,
       config
     );
-    console.log(geoResponse.data[0].name);
     const latitude = geoResponse.data[0].latitude;
     const longitude = geoResponse.data[0].longitude;
     const response = await axios.get(

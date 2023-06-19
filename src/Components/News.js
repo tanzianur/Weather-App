@@ -11,13 +11,14 @@ const NewsCard = ({ keyword, searchHandled }) => {
       setHeadlines(data.articles);
       setError(null);
     } catch (err) {
-      setHeadlines(null);
+      setHeadlines([]);
       setError("Error fetching news data: Invalid keyword");
     }
   };
 
   useEffect(() => {
     if (searchHandled) {
+      newsSearch("");
       newsSearch(keyword);
     }
   }, [searchHandled, keyword]);
