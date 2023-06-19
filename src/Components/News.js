@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-const NewsCard = ({ searchTriggered }) => {
+const NewsCard = ({ keyword, searchHandled }) => {
   const [headlines, setHeadlines] = useState([]);
   const [error, setError] = useState(null);
 
@@ -11,14 +11,16 @@ const NewsCard = ({ searchTriggered }) => {
       setHeadlines(data.articles);
       setError(null);
     } catch (err) {
+      setHeadlines(null);
       setError("Error fetching news data: Invalid keyword");
-      setHeadlines([error]);
     }
   };
 
   useEffect(() => {
-    newsSearch("nyc");
-  }, [searchTriggered]);
+    if (searchHandled) {
+      newsSearch(keyword);
+    }
+  }, [searchHandled, keyword]);
 
   return (
     <div class="card">
@@ -36,6 +38,7 @@ const NewsCard = ({ searchTriggered }) => {
           </div>
         ))}
       </div>
+      {error && <p>{error}</p>}
     </div>
   );
 };

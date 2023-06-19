@@ -22,7 +22,7 @@ app.get("/weather/:country/:city", async (req, res) => {
     const latitude = geoResponse.data[0].latitude;
     const longitude = geoResponse.data[0].longitude;
     const response = await axios.get(
-      `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m&temperature_unit=fahrenheit&past_days=7` //   `https://api.open-meteo.com/v1/forecast?city=${city}`
+      `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m&temperature_unit=fahrenheit&past_days=7`
     );
     res.json(response.data);
   } catch (error) {

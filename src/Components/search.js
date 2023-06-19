@@ -4,13 +4,15 @@ import { getDatabase, ref, set } from "firebase/database";
 import { app } from "../firebase";
 const db = getDatabase();
 
-const WeatherSearch = ({ onSearch }) => {
+const WeatherSearch = ({ callback, onSearch }) => {
   const [city, setCity] = useState("");
   const [country, setCountry] = useState("");
   const [weatherData, setWeatherData] = useState(null);
   const [error, setError] = useState(null);
 
   const handleSearch = async () => {
+    callback(city);
+    onSearch();
     if (city != "" && country != "") {
       try {
         set(ref(db, "data/"), { country: country, city: city });
@@ -32,7 +34,6 @@ const WeatherSearch = ({ onSearch }) => {
 
   const handleCountryChange = (event) => {
     setCountry(event.target.value);
-    console.log(country);
   };
 
   return (
@@ -75,23 +76,7 @@ const WeatherSearch = ({ onSearch }) => {
       {error && <p>{error}</p>}
       {weatherData && (
         <div>
-          <h1>Weather in {city}</h1>
-          <p>{console.log(weatherData)}</p>
-          {/* <h2>{weatherData.city.name}</h2>
-          <h3>Past Week Forecast</h3>
-          {weatherData.forecast.slice(0, 7).map((day) => (
-            <div key={day.time}>
-              <p>Date: {day.time}</p>
-              <p>Temperature: {day.temperature}</p>
-              <p>Description: {day.description}</p>
-            </div>
-          ))}
-          <h3>Upcoming Week Forecast</h3>
-          {weatherData.forecast.slice(7).map((day) => (
-            <div key={day.time}>
-              <p>Date: {day.time}</p>
-              <p>Temperature: {day.temperature}</p>
-              <p>Description: {day.description}</p> */}
+          <p>Search successful</p>
         </div>
       )}
     </div>

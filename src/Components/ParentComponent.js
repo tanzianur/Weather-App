@@ -3,16 +3,21 @@ import WeatherSearch from "./search";
 import News from "./News";
 
 const ParentComponent = () => {
-  const [searchTriggered, setSearchTriggered] = useState("");
+  const [keyword, setKeyword] = useState("");
+  const [searchHandled, setSearchHandled] = useState(false);
 
-  const handleSearch = () => {
-    setSearchTriggered(WeatherSearch.city);
+  const fromChild = (value) => {
+    setKeyword(value);
+  };
+
+  const onSearch = () => {
+    setSearchHandled(true);
   };
 
   return (
     <div>
-      <WeatherSearch onSearch={handleSearch} />
-      <News searchTriggered={searchTriggered} />
+      <WeatherSearch callback={fromChild} onSearch={onSearch} />
+      <News keyword={keyword} searchHandled={searchHandled} />
     </div>
   );
 };
