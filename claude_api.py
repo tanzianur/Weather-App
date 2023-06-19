@@ -16,7 +16,7 @@ arg1 = sys.argv[1]
 
 print(
     generate_response(
-        "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",
+        "api-key-here",
         arg1,
     ),
 )

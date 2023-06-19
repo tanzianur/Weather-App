@@ -5,7 +5,7 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDEaE_rOUimCPuMneO41A2HTWZykXa8Kjc",
+  apiKey: "api-key-here",
   authDomain: "weather-app-324a2.firebaseapp.com",
   projectId: "weather-app-324a2",
   storageBucket: "weather-app-324a2.appspot.com",

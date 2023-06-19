@@ -19,7 +19,7 @@ app.get("/weather/:country/:city", async (req, res) => {
   const city = req.params.city;
   const country = req.params.country;
   const config = {
-    headers: { "X-Api-Key": "Ap3kZ2YbCi2Ijiz2p5O1eg==deSXcHfGihp2bhiY" },
+    headers: { "X-Api-Key": "api-key-here" },
   };
   try {
     const geoResponse = await axios.get(
@@ -78,7 +78,7 @@ app.get("/news/:keyword", async (req, res) => {
   const keyword = req.params.keyword;
   try {
     const response = await axios.get(
-      `https://newsapi.org/v2/everything?q=${keyword}&apiKey=b44088fadae04feb83049f2e048dc855`
+      `https://newsapi.org/v2/everything?q=${keyword}&apiKey=api-key-here`
     );
     res.json(response.data);
   } catch (error) {
