@@ -4,7 +4,6 @@ import WeatherSearch from "./Components/search";
 import LineChart from "./Components/LineChart";
 import { UserData } from "./Components/Data";
 import NewsCard from "./Components/News";
-import ParentComponent from "./Components/ParentComponent";
 
 function App() {
   const [userData, setUserData] = useState({
@@ -44,11 +43,10 @@ function App() {
   });
 
   return (
-    <div className="App">
-      <div style={{ width: 700 }}>
-        <ParentComponent />
-        <LineChart chartData={userData} />
-      </div>
+    <div class="App">
+      <ParentComponent />
+      <LineChart chartData={userData} />
+      <NewsCard />
     </div>
   );
 }

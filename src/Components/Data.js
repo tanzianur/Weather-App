@@ -29,4 +29,16 @@ export const UserData = [
       temperature: 67,
       air: 78,
     },
+    {
+        id: 5,
+        day: "Sat",
+        temperature: 48,
+        air: 300,
+      },
+      {
+        id: 5,
+        day: "Sun",
+        temperature: 81,
+        air: 99,
+      },
   ];
