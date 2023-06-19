@@ -5,6 +5,15 @@ import Chart from "chart.js/auto";
 function LineChart({ chartData, refreshChart }) {
   useEffect(() => {}, [refreshChart]);
 
+  const Card = ({ title, value }) => {
+    return (
+      <div className="card">
+        <h3>{title}</h3>
+        <p>{value}</p>
+      </div>
+    );
+  };
+
   return (
     <div class="card">
       <header>
@@ -12,6 +21,14 @@ function LineChart({ chartData, refreshChart }) {
       </header>
       <button class="upcoming">Upcoming</button>
       <Line data={chartData} />
+      <div className="weather-cards">
+        <Card title="Humidity" value={`${chartData.extraData.humidity}%`} />
+        <Card title="Wind" value={`${chartData.extraData.wind} mph`} />
+        <Card
+          title="Precipitation"
+          value={`${chartData.extraData.precipitation}%`}
+        />
+      </div>
     </div>
   );
 }

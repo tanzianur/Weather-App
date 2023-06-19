@@ -42,6 +42,11 @@ function App() {
         },
       },
     },
+    extraData: {
+      humidity: "N/A",
+      wind: "N/A",
+      precipitation: "N/A",
+    },
   });
 
   const [keyword, setKeyword] = useState("");
@@ -70,7 +75,6 @@ function App() {
       />
       <div class="row">
         <LineChart chartData={userData} refreshChart={refreshChart} />
-        <WeatherCards />
         <News keyword={keyword} searchHandled={searchHandled} />
         <SummaryAI refreshChart={refreshChart} />
       </div>

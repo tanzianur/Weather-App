@@ -18,7 +18,8 @@ const WeatherSearch = ({ callback, onSearch, tempCall }) => {
         const response = await axios.get(
           `http://localhost:3001/weather/${country}/${city}`
         );
-        let userData = response.data;
+        let userData = response.data.data;
+        let extra = response.data.extraData;
         let tempData = {
           labels: userData.map((data) => data.day),
           datasets: [
@@ -52,6 +53,11 @@ const WeatherSearch = ({ callback, onSearch, tempCall }) => {
                 position: "right",
               },
             },
+          },
+          extraData: {
+            humidity: extra.humidity,
+            wind: extra.wind,
+            precipitation: extra.precipitation,
           },
         };
         tempCall(tempData);
