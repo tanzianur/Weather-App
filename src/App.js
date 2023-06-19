@@ -2,9 +2,9 @@ import { useState } from "react";
 import "./App.css";
 import WeatherSearch from "./Components/search";
 import LineChart from "./Components/LineChart";
-import {UserData} from "./Components/Data"
+import { UserData } from "./Components/Data";
 import NewsCard from "./Components/News";
-
+import ParentComponent from "./Components/ParentComponent";
 
 function App() {
   const [userData, setUserData] = useState({
@@ -13,12 +13,10 @@ function App() {
       {
         label: "Temperature in °F",
         data: UserData.map((data) => data.temperature),
-        backgroundColor: [
-          "rgba(75,192,192,1)"
-        ],
+        backgroundColor: ["rgba(75,192,192,1)"],
         borderColor: "black",
         borderWidth: 2,
-        yAxisId: 'y',
+        yAxisId: "y",
       },
       {
         label: "Air Quality",
@@ -26,31 +24,30 @@ function App() {
         backgroundColor: ["rgba(168,100,189,1)"],
         borderColor: "black",
         borderWidth: 2,
-        yAxisId: 'y1',
-      }
+        yAxisId: "y1",
+      },
     ],
     options: {
       scales: {
         y: {
-          type: 'linear',
+          type: "linear",
           display: true,
-          position: 'left',
+          position: "left",
         },
         y1: {
-          type: 'linear',
+          type: "linear",
           display: true,
-          position: 'right',
-        }
-      }
-    }
+          position: "right",
+        },
+      },
+    },
   });
 
   return (
     <div className="App">
       <div style={{ width: 700 }}>
-        <WeatherSearch />
+        <ParentComponent />
         <LineChart chartData={userData} />
-        <NewsCard />
       </div>
     </div>
   );
