@@ -87,7 +87,7 @@ const WeatherSearch = ({ callback, onSearch, tempCall }) => {
       <div className="search">
         <input
           type="text"
-          className="search-bar"
+          className="search-bar-country"
           placeholder="Search Country"
           value={country}
           onChange={handleCountryChange}
