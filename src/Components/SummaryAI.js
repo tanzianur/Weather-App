@@ -40,8 +40,8 @@ const SummaryAI = React.memo(({ refreshChart }) => {
             </svg>
           </button>
         </h2>
-        <p>{summary}</p>
       </header>
+      <p class="summary">{summary}</p>
     </div>
   );
 });
