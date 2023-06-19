@@ -5,6 +5,7 @@ import LineChart from "./Components/LineChart";
 import {UserData} from "./Components/Data"
 import NewsCard from "./Components/News";
 import CitySummary from "./Components/ClaudeAi";
+import WeatherCards from "./Components/ExtraData";
 
 
 function App() {
@@ -47,16 +48,15 @@ function App() {
   });
 
   return (
-    <div className="App">
-      <div style={{ width: 700 }}>
+    <div class="App">
         <WeatherSearch />
-        <div class="col-sm-6">
+        <div class="row">
         <LineChart chartData={userData} />
+        <WeatherCards/>
         <NewsCard/>
         <CitySummary/>
         </div>
       </div>
-    </div>
   );
 }
 
