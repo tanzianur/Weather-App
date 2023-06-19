@@ -46,9 +46,15 @@ function App() {
 
   const [keyword, setKeyword] = useState("");
   const [searchHandled, setSearchHandled] = useState(false);
+  const [refreshChart, setRefreshChart] = useState(false);
 
   const fromChild = (value) => {
     setKeyword(value);
+  };
+
+  const tempFromChild = (value) => {
+    setUserData(value);
+    setRefreshChart(!refreshChart);
   };
 
   const onSearch = () => {
@@ -57,10 +63,14 @@ function App() {
 
   return (
     <div class="App">
-      <WeatherSearch callback={fromChild} onSearch={onSearch} />
+      <WeatherSearch
+        callback={fromChild}
+        onSearch={onSearch}
+        tempCall={tempFromChild}
+      />
       <News keyword={keyword} searchHandled={searchHandled} />
       <div class="row">
-        <LineChart chartData={userData} />
+        <LineChart chartData={userData} refreshChart={refreshChart} />
         <WeatherCards />
         <CitySummary />
       </div>

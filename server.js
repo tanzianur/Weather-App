@@ -23,7 +23,21 @@ app.get("/weather/:country/:city", async (req, res) => {
     const response = await axios.get(
       `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&hourly=temperature_2m&temperature_unit=fahrenheit&past_days=7`
     );
-    res.json(response.data);
+    const response2 = await axios.get(
+      `https://air-quality-api.open-meteo.com/v1/air-quality?latitude=${latitude}&longitude=${longitude}&hourly=pm10,pm2_5&past_days=7`
+    );
+    let quality = response2.data.hourly.pm2_5;
+    let temps = response.data.hourly;
+    let data = [];
+    for (i in temps.time) {
+      data.push({
+        id: i,
+        day: temps.time[i],
+        temperature: temps.temperature_2m[i],
+        air: quality[i],
+      });
+    }
+    res.json(data);
   } catch (error) {
     res.status(500).json({ error: "Error fetching weather data" });
   }

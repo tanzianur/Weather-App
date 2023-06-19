@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Line } from "react-chartjs-2";
-import { Chart as ChartJS } from "chart.js/auto";
+import Chart from "chart.js/auto";
 
-function LineChart({ chartData }) {
+function LineChart({ chartData, refreshChart }) {
+  useEffect(() => {
+    console.log("refresh");
+  }, [refreshChart]);
+
   return (
     <div class="card">
       <header>

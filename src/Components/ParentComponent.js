@@ -14,9 +14,11 @@ const ParentComponent = () => {
     setSearchHandled(true);
   };
 
+  const data = [];
+
   return (
     <div>
-      <WeatherSearch callback={fromChild} onSearch={onSearch} />
+      <WeatherSearch callback={fromChild} onSearch={onSearch} data={data} />
       <News keyword={keyword} searchHandled={searchHandled} />
     </div>
   );
