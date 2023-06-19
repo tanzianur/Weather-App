@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { app } from "../firebase";
+import { getDatabase, ref, set } from "firebase/database";
+const db = getDatabase();
+
 const NewsCard = ({ keyword, searchHandled }) => {
   const [headlines, setHeadlines] = useState([]);
   const [error, setError] = useState(null);
@@ -10,6 +14,9 @@ const NewsCard = ({ keyword, searchHandled }) => {
       const data = response.data;
       setHeadlines(data.articles);
       setError(null);
+      set(ref(db, "data/"), {
+        news: data.articles,
+      });
     } catch (err) {
       setHeadlines([]);
       setError("Error fetching news data: Invalid keyword");

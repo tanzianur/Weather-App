@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { getDatabase, ref, set } from "firebase/database";
 import { app } from "../firebase";
+import { getDatabase, ref, set } from "firebase/database";
 const db = getDatabase();
 
 const WeatherSearch = ({ callback, onSearch, tempCall }) => {
@@ -15,7 +15,6 @@ const WeatherSearch = ({ callback, onSearch, tempCall }) => {
     onSearch();
     if (city != "" && country != "") {
       try {
-        set(ref(db, "data/"), { country: country, city: city });
         const response = await axios.get(
           `http://localhost:3001/weather/${country}/${city}`
         );
@@ -58,6 +57,11 @@ const WeatherSearch = ({ callback, onSearch, tempCall }) => {
         tempCall(tempData);
         setWeatherData(response.data);
         setError(null);
+        set(ref(db, "data/weather"), {
+          country: country,
+          city: city,
+          temperature: response.data,
+        });
       } catch (err) {
         setWeatherData(null);
         setError("Error fetching weather data: Invalid country or city");

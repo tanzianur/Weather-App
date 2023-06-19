@@ -1,11 +1,19 @@
 const express = require("express");
 const cors = require("cors");
 const axios = require("axios");
-
+const admin = require("firebase-admin");
 const app = express();
 const port = 3001;
 
 app.use(cors());
+
+const serviceAccount = require("./weather-app-324a2-firebase-adminsdk-v0fsg-c1cf7a1eb9.json");
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: "https://weather-app-324a2-default-rtdb.firebaseio.com/", // Replace with your database URL
+});
+
+const db = admin.database();
 
 app.get("/weather/:country/:city", async (req, res) => {
   const city = req.params.city;
@@ -53,6 +61,39 @@ app.get("/news/:keyword", async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: "Error fetching news data" });
   }
+});
+
+app.get("/claude", async (req, res) => {
+  let claudeIn = "Summarize the following.\n{\n";
+  try {
+    let reference = db.ref("data/news");
+    const snapshot = await reference.once("value");
+    const data = snapshot.val();
+    let desc = "";
+    for (var i = 0; i < data.length; i++) {
+      desc += data[i].description + "\n";
+    }
+    claudeIn += desc + "}";
+  } catch (error) {
+    console.log("ERROR: " + error);
+  }
+
+  const { spawn } = require("child_process");
+
+  // Execute Python script with command-line arguments
+  const pythonProcess = spawn("python", ["./test.py", claudeIn]);
+
+  // Handle output from the Python script
+  pythonProcess.stdout.on("data", (data) => {
+    // Process data received from Python
+    console.log("Claude finished");
+    res.json(data.toString());
+  });
+
+  // Handle errors, if any
+  pythonProcess.stderr.on("data", (data) => {
+    console.error(data.toString());
+  });
 });
 
 app.listen(port, () => {

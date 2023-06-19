@@ -4,9 +4,9 @@ import WeatherSearch from "./Components/search";
 import LineChart from "./Components/LineChart";
 import { UserData } from "./Components/Data";
 import News from "./Components/News";
-import CitySummary from "./Components/ClaudeAi";
 import WeatherCards from "./Components/ExtraData";
-import ParentComponent from "./Components/ParentComponent";
+import SummaryAI from "./Components/SummaryAI";
+
 function App() {
   const [userData, setUserData] = useState({
     labels: UserData.map((data) => data.day),
@@ -68,11 +68,11 @@ function App() {
         onSearch={onSearch}
         tempCall={tempFromChild}
       />
-      <News keyword={keyword} searchHandled={searchHandled} />
       <div class="row">
         <LineChart chartData={userData} refreshChart={refreshChart} />
         <WeatherCards />
-        <CitySummary />
+        <News keyword={keyword} searchHandled={searchHandled} />
+        <SummaryAI refreshChart={refreshChart} />
       </div>
     </div>
   );
