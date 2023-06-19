@@ -4,6 +4,7 @@ import WeatherSearch from "./Components/search";
 import LineChart from "./Components/LineChart";
 import {UserData} from "./Components/Data"
 import NewsCard from "./Components/News";
+import CitySummary from "./Components/ClaudeAi";
 
 
 function App() {
@@ -49,8 +50,11 @@ function App() {
     <div className="App">
       <div style={{ width: 700 }}>
         <WeatherSearch />
+        <div class="col-sm-6">
         <LineChart chartData={userData} />
-        <NewsCard />
+        <NewsCard/>
+        <CitySummary/>
+        </div>
       </div>
     </div>
   );
