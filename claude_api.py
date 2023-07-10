@@ -1,22 +1,24 @@
 import sys
-import anthropic
+import os
+from anthropic import Anthropic, HUMAN_PROMPT, AI_PROMPT
+from dotenv import load_dotenv
+load_dotenv()
 
+anthropic = Anthropic(api_key=os.getenv('ANTHROPIC_API_KEY'))
 
-def generate_response(key, prompt):
-    c = anthropic.Client(key)
-    resp = c.completion(
-        prompt=f"{anthropic.HUMAN_PROMPT} {prompt}{anthropic.AI_PROMPT}",
-        model="claude-1",
-        max_tokens_to_sample=100,
+def generate_response(prompt):
+    completion = anthropic.completions.create(
+        model="claude-instant-1",
+        max_tokens_to_sample=300,
+        prompt=f"{HUMAN_PROMPT} {prompt} {AI_PROMPT}",
     )
-    return resp["completion"]
+    return completion.completion
 
 
 arg1 = sys.argv[1]
 
 print(
     generate_response(
-        "api-key-here",
         arg1,
-    ),
+    )
 )
