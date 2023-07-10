@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 const WeatherCards = () => {
   const humidity = 65; // Example value for humidity

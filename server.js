@@ -3,14 +3,15 @@ const cors = require("cors");
 const axios = require("axios");
 const admin = require("firebase-admin");
 const app = express();
+require("dotenv").config();
 const port = 3001;
 
 app.use(cors());
 
-const serviceAccount = require("./weather-app-324a2-firebase-adminsdk-v0fsg-c1cf7a1eb9.json");
+const serviceAccount = require("./sensitive/serviceAccount.json");
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://weather-app-324a2-default-rtdb.firebaseio.com/", // Replace with your database URL
+  databaseURL: "https://weather-d33fe-default-rtdb.firebaseio.com/", // Replace with your database URL
 });
 
 const db = admin.database();
@@ -19,7 +20,7 @@ app.get("/weather/:country/:city", async (req, res) => {
   const city = req.params.city;
   const country = req.params.country;
   const config = {
-    headers: { "X-Api-Key": "api-key-here" },
+    headers: { "X-Api-Key": process.env.API_NINJAS_API_KEY },
   };
   try {
     const geoResponse = await axios.get(
@@ -78,7 +79,7 @@ app.get("/news/:keyword", async (req, res) => {
   const keyword = req.params.keyword;
   try {
     const response = await axios.get(
-      `https://newsapi.org/v2/everything?q=${keyword}&apiKey=api-key-here`
+      `https://newsapi.org/v2/everything?q=${keyword}&apiKey=${process.env.NEWS_API_API_KEY}`
     );
     res.json(response.data);
   } catch (error) {
@@ -87,7 +88,7 @@ app.get("/news/:keyword", async (req, res) => {
 });
 
 app.get("/claude", async (req, res) => {
-  let claudeIn = "Summarize the following.\n{\n";
+  let claudeIn = "Summarize all of the following news into one article.\n{\n";
   try {
     let reference = db.ref("data/news");
     const snapshot = await reference.once("value");

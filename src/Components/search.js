@@ -13,7 +13,7 @@ const WeatherSearch = ({ callback, onSearch, tempCall }) => {
   const handleSearch = async () => {
     callback(city);
     onSearch();
-    if (city != "" && country != "") {
+    if (city !== "" && country !== "") {
       try {
         const response = await axios.get(
           `http://localhost:3001/weather/${country}/${city}`

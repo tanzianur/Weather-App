@@ -1,22 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
-import { app } from "../firebase";
-import { getDatabase, ref, set } from "firebase/database";
-const db = getDatabase();
 
 const SummaryAI = React.memo(({ refreshChart }) => {
   const [summary, setSummary] = useState("");
-  const [error, setError] = useState(null);
 
   const createSummary = async () => {
     try {
       const response = await axios.get(`http://localhost:3001/claude`);
       const data = response.data;
       setSummary(data);
-      setError(null);
     } catch (err) {
       setSummary("");
-      setError("Error with AI");
       console.log("ERROR");
     }
   };

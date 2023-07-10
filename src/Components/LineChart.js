@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Line } from "react-chartjs-2";
 import Chart from "chart.js/auto";
 
@@ -15,7 +15,7 @@ function LineChart({ chartData, refreshChart }) {
   };
 
   return (
-    <div class="card">
+    <div className="card">
       <header>
         <h2>Temperature and Air Quality</h2>
       </header>

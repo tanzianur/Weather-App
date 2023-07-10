@@ -4,7 +4,6 @@ import WeatherSearch from "./Components/search";
 import LineChart from "./Components/LineChart";
 import { UserData } from "./Components/Data";
 import News from "./Components/News";
-import WeatherCards from "./Components/ExtraData";
 import SummaryAI from "./Components/SummaryAI";
 
 function App() {
@@ -67,13 +66,13 @@ function App() {
   };
 
   return (
-    <div class="App">
+    <div className="App">
       <WeatherSearch
         callback={fromChild}
         onSearch={onSearch}
         tempCall={tempFromChild}
       />
-      <div class="row">
+      <div className="row">
         <LineChart chartData={userData} refreshChart={refreshChart} />
         <News keyword={keyword} searchHandled={searchHandled} />
         <SummaryAI refreshChart={refreshChart} />

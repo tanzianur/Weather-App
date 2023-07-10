@@ -5,12 +5,12 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "api-key-here",
-  authDomain: "weather-app-324a2.firebaseapp.com",
-  projectId: "weather-app-324a2",
-  storageBucket: "weather-app-324a2.appspot.com",
-  messagingSenderId: "554873970032",
-  appId: "1:554873970032:web:ad118ab60192d08a1ec3b5",
+  apiKey: "AIzaSyBqlxFRLD1akHxhJjhu905VA9lG69UyE0Q",
+  authDomain: "weather-d33fe.firebaseapp.com",
+  projectId: "weather-d33fe",
+  storageBucket: "weather-d33fe.appspot.com",
+  messagingSenderId: "243522981669",
+  appId: "1:243522981669:web:10c79e43501373d0c954cc",
 };
 
 // Initialize Firebase
